@@ -127,3 +127,14 @@ if __name__ == "__main__":
     print("Execução encerrada.")
     import subprocess
 subprocess.run(["git", "init"])
+import ccxt
+
+# Configurar conexão com a Binance
+exchange = ccxt.binance()
+
+def get_binance_price(symbol="BTC/USDT"):
+    ticker = exchange.fetch_ticker(symbol)
+    return ticker['last']  # Último preço do ativo
+
+# Exemplo de uso
+print(get_binance_price("ETH/USDT"))  # Mostra o preço atual do Ethereum
