@@ -1,3 +1,4 @@
+import numpy as np
 import subprocess
 subprocess.run(["git", "add", "."])
 subprocess.run(["git", "commit", "-m", "Primeiro commit"])
