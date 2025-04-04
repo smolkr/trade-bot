@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Bot de Trading</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { margin: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        pre { background: #f4f4f4; padding: 10px; display: inline-block; text-align: left; }
+    </style>
+</head>
+<body>
+    <h1>Bot de Trading</h1>
+    <button onclick="startBot()">Iniciar Bot</button>
+    <button onclick="stopBot()">Parar Bot</button>
+    <button onclick="enqueueTrade()">Adicionar Trade</button>
+    <button onclick="getReport()">Ver Relatório</button>
+
+    <h2>Status</h2>
+    <pre id="status"></pre>
+
+    <script>
+        function updateStatus(message) {
+            document.getElementById('status').innerText = message;
+        }
+
+        function startBot() {
+            fetch('/start')
+                .then(response => response.json())
+                .then(data => updateStatus(data.message));
+        }
+
+        function stopBot() {
+            fetch('/stop')
+                .then(response => response.json())
+                .then(data => updateStatus(data.message));
+        }
+
+        function enqueueTrade() {
+            fetch('/enqueue')
+                .then(response => response.json())
+                .then(data => updateStatus(data.message));
+        }
+
+        function getReport() {
+            fetch('/report')
+                .then(response => response.json())
+                .then(data => updateStatus(data.report));
+        }
+    </script>
+</body>
+</html>
